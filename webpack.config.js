@@ -10,6 +10,7 @@ module.exports = {
   devtool: 'source-map',
   devServer: {
     contentBase: false,
+    historyApiFallback: true,
   },
   module: {
     rules: [
@@ -62,6 +63,7 @@ module.exports = {
   output: {
     filename: 'bundle.js',
     path: path.resolve(__dirname, 'dist'),
+    publicPath: '/',
   },
   stats: { children: false },
   plugins: [

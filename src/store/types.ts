@@ -1,12 +1,6 @@
-import {
-  submitOrder,
-  editOrder,
-  receiveOrder,
-  filteredSymbols,
-  failedOrder,
-} from '../actions/actions';
+import { updateLedger } from '../actions/actions';
 
-/* export interface FieldData {
+export interface FieldData {
   name: string[];
   value: any;
   touched: boolean;
@@ -14,27 +8,20 @@ import {
   errors: string[];
 }
 
-export type OrderKeys = keyof Fields;
+export type LoginFieldKeys = keyof LoginFields;
 
 type FieldError = {
-  [key in OrderKeys]?: string[];
+  [key in LoginFieldKeys]?: string[];
 };
 
-export interface Fields {
-  action: string;
-  symbol: string | undefined;
-  qty: number;
-  price: number;
-  stopPrice: number;
-  tif: string;
-  comment: string;
+export interface LoginFields {
+  address: string;
   errors: FieldError;
-} */
+}
 
 export interface Ledger {
-  address: string;
-  balance: number;
-  error?: string;
+  fields: LoginFields;
+  balance?: number;
 }
 
 export interface State {
@@ -48,26 +35,16 @@ export const enum Pages {
 }
 
 export const enum ActionTypes {
-  submitOrder = 'SUBMIT_ORDER',
-  receiveOrder = 'RECEIVE_ORDER',
-  editOrder = 'EDIT_ORDER',
-  filteredSymbols = 'FILTER_SYMBOLS',
-  failedOrder = 'FAILED_ORDER',
+  updateLedger = 'UPDATE_LEDGER',
 }
 
-export type Action =
-  | { type: ActionTypes.filteredSymbols; payload: State['order'] }
-  | { type: ActionTypes.submitOrder; payload: State['order'] }
-  | { type: ActionTypes.receiveOrder; payload: State['order'] }
-  | { type: ActionTypes.editOrder; payload: State['order'] }
-  | { type: ActionTypes.failedOrder; payload: State['order'] };
+export type Action = {
+  type: ActionTypes.updateLedger;
+  payload: State['ledger'];
+};
 
 export interface Actions {
-  failedOrder: (...p: Parameters<typeof failedOrder>) => void;
-  submitOrder: (...p: Parameters<typeof submitOrder>) => void;
-  receiveOrder: (...p: Parameters<typeof receiveOrder>) => void;
-  editOrder: (...p: Parameters<typeof editOrder>) => void;
-  filteredSymbols: (...p: Parameters<typeof filteredSymbols>) => void;
+  updateLedger: (...p: Parameters<typeof updateLedger>) => void;
 }
 
 export interface StoreContext {

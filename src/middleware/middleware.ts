@@ -10,7 +10,7 @@ export const applyMiddleware = (dispatch: Dispatch<Action>) => async (
   dispatch(action);
 
   switch (action.type) {
-    case ActionTypes.submitOrder:
+    case ActionTypes.updateLedger:
       console.log('submitted');
       break;
     default:

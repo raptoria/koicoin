@@ -15,10 +15,10 @@ function App() {
   return (
     <Router>
       <Switch>
-        <Route path={Pages.login}>
+        <Route exact path={Pages.login}>
           <Login />
         </Route>
-        <Route path={Pages.dashboard}>
+        <Route exact path={Pages.dashboard}>
           <Dashboard />
         </Route>
       </Switch>

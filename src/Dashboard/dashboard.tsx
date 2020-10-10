@@ -7,7 +7,7 @@ import styles from './dashboard.module.scss';
 const Dashboard: React.FC = () => {
   const {
     state: {
-      ledger: { address, error },
+      ledger: { fields },
     },
     actions,
   } = useContext(StoreContext);
@@ -15,6 +15,7 @@ const Dashboard: React.FC = () => {
   return (
     <div className={styles.login}>
       Dashboard <Link to={Pages.login}>Sign out</Link>
+      {JSON.stringify(fields)}
     </div>
   );
 };
