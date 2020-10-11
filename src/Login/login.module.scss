@@ -1,18 +1,78 @@
 .login {
-  width: 100%;
+  display: grid;
+  grid-template-columns: max-content;
+  grid-template-rows: 1fr;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
 
   :global {
-    .ant-form-item-label > label {
-      font-weight: bold;
+    h3 {
+      color: var(--neutral-color);
+      margin-bottom: var(--spacing-lg);
     }
-    .ant-form-item {
-      display: inline-block;
+
+    hr {
+      border: 1px solid #4d4d4d;
+      margin-bottom: 2rem;
+    }
+
+    .logo {
+      filter: drop-shadow(0px 5px 5px #3a3939);
+    }
+
+    h1 {
+      color: var(--neutral-color);
+      span {
+        margin-left: 0.2rem;
+        color: var(--primary-color);
+      }
+      margin: 1rem 0;
+    }
+
+    .form {
+      width: 20rem;
+      text-align: center;
+    }
+
+    .address {
+      color: var(--neutral-color);
+      margin-right: 0.1rem;
+    }
+
+    .ant-form-item-label {
+      text-align: left;
+      width: 100%;
+    }
+
+    .ant-input-affix-wrapper {
+      background: var(--secondary-background);
+      border: none;
+    }
+
+    .ant-input {
+      color: var(--neutral-color);
+      background: var(--secondary-background);
+    }
+    .ant-btn-primary {
+      background: var(--primary-color);
+      border-color: var(--secondary-color);
+      width: 100%;
+    }
+
+    .ant-btn:not([disabled]):hover {
+      filter: brightness(110%);
+    }
+
+    .ant-btn[disabled]:hover {
+      background: var(--primary-color);
+      border: none;
     }
   }
 }
 
 @media all and (max-width: 500px) {
-  .grid {
+  .login {
     grid-template-columns: repeat(2, max-content);
     grid-template-rows: none;
     grid-auto-rows: max-content;

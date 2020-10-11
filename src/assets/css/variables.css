@@ -1,8 +1,36 @@
 :root {
-  --primary-color: white;
-  --secondary-color: #cccccc;
-  --primary-background: black;
+  --primary-color: #db6a30;
+  --secondary-color: #ff5722;
+  --neutral-color: #d1d1d1;
+  --primary-background: #444444;
+  --secondary-background: #565656;
   --header-height: 56px;
-  --buy-background: #23ce77;
-  --sell-background: #f50c5b;
+  --spacing-lg: 3rem;
+}
+
+@font-face {
+  font-family: 'Open Sans';
+  font-style: normal;
+  font-weight: 400;
+  src: url('../fonts/OpenSans-Regular.ttf'); /* IE9 Compat Modes */
+  src: local('Open Sans'), local('OpenSans'),
+    url('../fonts/OpenSans-Regular.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'Open Sans';
+  font-style: normal;
+  font-weight: 700;
+  src: url('../fonts/OpenSans-Bold.ttf'); /* IE9 Compat Modes */
+  src: local('Open Sans'), local('OpenSans'),
+    url('../fonts/OpenSans-Bold.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'Open Sans';
+  font-style: normal;
+  font-weight: 600;
+  src: url('../fonts/OpenSans-SemiBold.ttf'); /* IE9 Compat Modes */
+  src: local('Open Sans'), local('OpenSans'),
+    url('../fonts/OpenSans-SemiBold.ttf') format('truetype');
 }

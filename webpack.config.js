@@ -35,13 +35,30 @@ module.exports = {
             ],
           },
           {
-            use: [MiniCssExtractPlugin.loader, 'css-loader', 'sass-loader'],
+            use: [
+              MiniCssExtractPlugin.loader,
+              'css-loader',
+              'resolve-url-loader',
+              {
+                loader: 'sass-loader',
+                options: {
+                  implementation: require('sass'),
+                },
+              },
+            ],
           },
         ],
       },
       {
         test: /\.(png|svg|jpg|gif)$/,
-        use: ['file-loader'],
+        use: [
+          {
+            loader: 'file-loader',
+            options: {
+              esModule: false /* remove later when file loader fixes bug*/,
+            },
+          },
+        ],
       },
       {
         test: /\.(woff(2)?|ttf|eot|svg)(\?v=\d+\.\d+\.\d+)?$/,

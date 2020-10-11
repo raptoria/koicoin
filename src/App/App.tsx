@@ -7,7 +7,7 @@ import {
   Link,
   Redirect,
 } from 'react-router-dom';
-import './app.module.scss';
+import './app.scss';
 import { Pages } from '../store/types';
 import Dashboard from '../Dashboard/Dashboard';
 
