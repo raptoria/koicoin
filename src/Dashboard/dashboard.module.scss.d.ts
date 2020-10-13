@@ -1,2 +1,1 @@
-export const grid: string;
-export const login: string;
+export const dashboard: string;

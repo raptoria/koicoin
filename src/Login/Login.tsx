@@ -65,7 +65,6 @@ const Login: React.FC = () => {
     <div className={styles.login}>
       <div className="form">
         <img src={logo} className="logo" />
-
         <h1>
           job<span>coin</span>
         </h1>
