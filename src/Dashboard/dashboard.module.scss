@@ -11,11 +11,12 @@
     }
 
     a {
-      color: black;
+      color: #ffe6da;
+      text-decoration: underline;
     }
 
     a:hover {
-      text-decoration: underline;
+      color: var(--neutral2-color);
     }
 
     .secondColumn {
@@ -26,6 +27,7 @@
       color: var(--neutral2-color);
       font-size: var(--spacing-sm);
       margin-left: var(--spacing-sm);
+      letter-spacing: 2px;
     }
     .ant-page-header {
       grid-column: span 2;
@@ -43,10 +45,13 @@
       align-items: center;
       color: var(--neutral2-color);
 
+      .extraAvatar {
+        background: #c76330;
+        margin-right: 0.5rem;
+      }
+
       span {
-        font-size: 0.8rem;
-        margin-right: var(--spacing-sm);
-        margin-left: 0.5rem;
+        margin-right: var(--spacing-md);
       }
     }
 

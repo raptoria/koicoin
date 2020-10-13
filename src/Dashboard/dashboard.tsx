@@ -6,7 +6,7 @@ import { Pages } from '../store/types';
 import styles from './dashboard.module.scss';
 import logo from '../assets/images/logo.png';
 import Avatar from 'antd/lib/avatar/avatar';
-import { UserOutlined } from '@ant-design/icons';
+import { UserOutlined, ArrowRightOutlined } from '@ant-design/icons';
 
 const Dashboard: React.FC = () => {
   const {
@@ -24,8 +24,19 @@ const Dashboard: React.FC = () => {
         avatar={{ src: logo }}
         extra={[
           <div key="userInfo">
-            <Avatar key="avatar" size="small" icon={<UserOutlined />} />
+            <Avatar
+              key="avatar"
+              className="extraAvatar"
+              size="small"
+              icon={<UserOutlined />}
+            />
             <span>{fields.address}</span>
+            <Avatar
+              key="avatar"
+              size="small"
+              className="extraAvatar"
+              icon={<ArrowRightOutlined />}
+            />
             <Link to={Pages.login} key="login">
               Sign out
             </Link>
