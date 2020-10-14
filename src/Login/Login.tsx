@@ -91,7 +91,7 @@ const Login: React.FC = () => {
             size="large"
             type="primary"
             htmlType="submit"
-            disabled={!fields.address}
+            disabled={!fields?.address}
             data-testid="signinButton"
           >
             Sign in

@@ -1,4 +1,10 @@
-import { updateLedger } from '../actions/actions';
+import {
+  getTransactionsForAddress,
+  receiveTransactionsForAddress,
+  sendCoins,
+  updateLedger,
+  receiveError,
+} from '../actions/actions';
 
 export interface FieldData {
   name: string[];
@@ -19,9 +25,18 @@ export interface LoginFields {
   errors: FieldError;
 }
 
+export interface Transaction {
+  timestamp: string;
+  fromAddress: string;
+  toAddress: string;
+  amount: string;
+}
+
 export interface Ledger {
-  fields: LoginFields;
-  balance?: number;
+  fields?: LoginFields;
+  balance?: string;
+  transactions?: Transaction[];
+  error?: string;
 }
 
 export interface State {
@@ -36,15 +51,35 @@ export const enum Pages {
 
 export const enum ActionTypes {
   updateLedger = 'UPDATE_LEDGER',
+  getTransactionsForAddress = 'TRANSACTIONS_FOR_ADDRESS',
+  receiveTransactionsForAddress = 'RECEIVE_TRANSACTIONS_FOR_ADDRESS',
+  sendCoins = 'SEND_COINS',
+  receiveError = 'RECEIVE_ERROR',
 }
 
-export type Action = {
-  type: ActionTypes.updateLedger;
-  payload: State['ledger'];
-};
+export type Action =
+  | { type: ActionTypes.updateLedger; payload: State['ledger'] }
+  | {
+      type: ActionTypes.getTransactionsForAddress;
+      payload: Partial<LoginFields>;
+    }
+  | {
+      type: ActionTypes.receiveTransactionsForAddress;
+      payload: State['ledger'];
+    }
+  | { type: ActionTypes.sendCoins; payload: State['ledger'] }
+  | { type: ActionTypes.receiveError; payload: State['ledger'] };
 
 export interface Actions {
   updateLedger: (...p: Parameters<typeof updateLedger>) => void;
+  getTransactionsForAddress: (
+    ...p: Parameters<typeof getTransactionsForAddress>
+  ) => void;
+  receiveTransactionsForAddress: (
+    ...p: Parameters<typeof receiveTransactionsForAddress>
+  ) => void;
+  sendCoins: (...p: Parameters<typeof sendCoins>) => void;
+  receiveError: (...p: Parameters<typeof receiveError>) => void;
 }
 
 export interface StoreContext {

@@ -6,6 +6,11 @@
   height: 100%;
 
   :global {
+    header {
+      grid-column: span 2;
+      margin-bottom: var(--spacing-md);
+    }
+
     .firstColumn {
       margin: 0 var(--spacing-md);
     }
@@ -23,6 +28,15 @@
       margin-right: var(--spacing-md);
     }
 
+    .ant-alert-error {
+      background-color: #f44336;
+      border: 1px solid #ea3729;
+    }
+
+    .ant-alert-error .ant-alert-icon {
+      color: #b11818;
+    }
+
     .ant-page-header-heading-sub-title {
       color: var(--neutral2-color);
       font-size: var(--spacing-sm);
@@ -30,8 +44,6 @@
       letter-spacing: 2px;
     }
     .ant-page-header {
-      grid-column: span 2;
-      margin-bottom: var(--spacing-md);
       background: var(--primary-color);
       padding: 0.6rem 1.5rem;
     }

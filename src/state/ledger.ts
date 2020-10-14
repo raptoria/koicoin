@@ -5,5 +5,4 @@ export const ledger: Ledger = {
     address: '',
     errors: {}, //{ qty: ['oops!'] },
   },
-  balance: 0,
 };
