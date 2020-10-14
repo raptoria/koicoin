@@ -1,73 +1,46 @@
-import { Action, ActionTypes, ApiResponse } from '../store/types';
-import { Dispatch } from 'react';
-import fetchJsonp, { Response as JsonpResponse } from 'fetch-jsonp';
+import match from 'conditional-expression';
+import { Action } from '../store/types';
+import { ledgerMiddleware } from './ledgerMiddleware';
 
-const proxy = 'https://cors-anywhere.herokuapp.com/';
+interface TakeEvery {
+  actionName: string;
+  functionCall: (action: Action) => Promise<Action>;
+}
+const middlewares = [ledgerMiddleware];
 
-export const applyMiddleware = (dispatch: Dispatch<Action>) => async (
-  action: Action
-) => {
-  switch (action.type) {
-    case ActionTypes.getTransactionsForAddress:
-      console.log('getting transaction');
-      const address = action.payload.address;
-
-      try {
-        const response: JsonpResponse = await fetchJsonp(
-          `https://jobcoin.gemini.com/germinate-deepness/api/addresses/${address}`
-        );
-        const result: ApiResponse = await response.json();
-
-        if (!response.ok) {
-          throw new Error(result.error);
-        }
-        dispatch({
-          type: ActionTypes.receiveTransactionsForAddress,
-          payload: result,
-        });
-      } catch (error) {
-        dispatch({
-          type: ActionTypes.receiveError,
-          payload: { error: error.message },
-        });
-      }
-      break;
-
-    case ActionTypes.sendCoins:
-      try {
-        const response: Response = await fetch(
-          proxy +
-            'http://jobcoin.gemini.com/germinate-deepness/api/transactions',
-          {
-            method: 'POST',
-            body: JSON.stringify(action.payload),
-            headers: {
-              'Content-Type': 'application/json',
-            },
-          }
-        );
-        const result: ApiResponse = await response.json();
-
-        if (!response.ok) {
-          throw new Error(result.error);
-        }
-        console.log('sending coins');
-        setTimeout(() => {
-          console.log('inside timeout');
-          dispatch({
-            type: ActionTypes.getTransactionsForAddress,
-            payload: { address: action.payload.fromAddress },
-          });
-        }, 2000);
-      } catch (error) {
-        dispatch({
-          type: ActionTypes.receiveError,
-          payload: { error: error.message },
-        });
-      }
-      break;
-    default:
-      dispatch(action);
-      break;
-  }
+export const takeEvery = (
+  actionName: string,
+  functionCall: (action: Action) => Promise<Action>
+): TakeEvery => {
+  return {
+    actionName,
+    functionCall,
+  };
 };
+
+/***
+ * applyMiddleware: the function that will be executed before any dispatched event
+ */
+export const applyMiddleware = (dispatch: any) => (action: Action) =>
+  dispatch(action) ||
+  middlewares.forEach((useMiddleware) => {
+    let value = null;
+    const middleWare = useMiddleware();
+
+    do {
+      console.log('middleware has a new value');
+      value = middleWare.next().value as TakeEvery;
+
+      if (value !== undefined) {
+        match(value)
+          .on((take: TakeEvery) => take.actionName === action.type)
+          .then((takeEveryResult: TakeEvery) =>
+            takeEveryResult.functionCall(action).then((callResult) => {
+              if (callResult) {
+                applyMiddleware(dispatch)(callResult);
+              }
+            })
+          );
+      }
+    } while (value !== undefined);
+  });
