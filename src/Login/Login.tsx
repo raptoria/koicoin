@@ -39,7 +39,7 @@ const Login: React.FC = () => {
         value,
         touched: false,
         validating: false,
-        errors: fields.errors[key as LoginFieldKeys] || [],
+        errors: fields && fields.errors ? fields.errors[key as LoginFieldKeys]! : [],
       });
     }
     return fieldsData;

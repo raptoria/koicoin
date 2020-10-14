@@ -3,6 +3,6 @@ import { Ledger } from '../store/types';
 export const ledger: Ledger = {
   fields: {
     address: '',
-    errors: {}, //{ qty: ['oops!'] },
+    errors: {}, //{ address: ['oops!'] },
   },
 };

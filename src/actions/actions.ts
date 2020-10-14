@@ -40,6 +40,12 @@ export const receiveError = (payload: State['ledger']): Action => {
   };
 };
 
+export const logout = (): Action => {
+  return {
+    type: ActionTypes.logout,
+  };
+};
+
 //synonymous with bindActionCreators in mapDispatchToProps, 2nd arg of connect
 export const useActions = (dispatch: Dispatch<Action>) => ({
   updateLedger: (payload: State['ledger']): void =>
@@ -51,4 +57,5 @@ export const useActions = (dispatch: Dispatch<Action>) => ({
   sendCoins: (payload: State['ledger']): void => dispatch(sendCoins(payload)),
   receiveError: (payload: State['ledger']): void =>
     dispatch(receiveError(payload)),
+  logout: (): void => dispatch(logout()),
 });

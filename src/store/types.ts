@@ -4,6 +4,7 @@ import {
   sendCoins,
   updateLedger,
   receiveError,
+  logout,
 } from '../actions/actions';
 
 export interface FieldData {
@@ -33,10 +34,11 @@ export interface Transaction {
 }
 
 export interface Ledger {
-  fields?: LoginFields;
-  balance?: string;
-  transactions?: Transaction[];
-  error?: string;
+  fields?: LoginFields | null;
+  balance?: string | null;
+  transactions?: Transaction[] | null;
+  error?: string | null;
+  loading?: boolean;
 }
 
 export interface State {
@@ -55,6 +57,7 @@ export const enum ActionTypes {
   receiveTransactionsForAddress = 'RECEIVE_TRANSACTIONS_FOR_ADDRESS',
   sendCoins = 'SEND_COINS',
   receiveError = 'RECEIVE_ERROR',
+  logout = 'LOGOUT',
 }
 
 export type Action =
@@ -68,7 +71,8 @@ export type Action =
       payload: State['ledger'];
     }
   | { type: ActionTypes.sendCoins; payload: State['ledger'] }
-  | { type: ActionTypes.receiveError; payload: State['ledger'] };
+  | { type: ActionTypes.receiveError; payload: State['ledger'] }
+  | { type: ActionTypes.logout };
 
 export interface Actions {
   updateLedger: (...p: Parameters<typeof updateLedger>) => void;
@@ -80,6 +84,7 @@ export interface Actions {
   ) => void;
   sendCoins: (...p: Parameters<typeof sendCoins>) => void;
   receiveError: (...p: Parameters<typeof receiveError>) => void;
+  logout: () => void;
 }
 
 export interface StoreContext {

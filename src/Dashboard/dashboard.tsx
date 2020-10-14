@@ -1,5 +1,5 @@
-import { Alert, Card, PageHeader } from 'antd';
-import React, { Fragment, useCallback, useContext, useEffect } from 'react';
+import { Alert, Card,  PageHeader, Spin } from 'antd';
+import React, { useCallback, useContext, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { StoreContext } from '../store/store';
 import { Pages } from '../store/types';
@@ -11,7 +11,7 @@ import { UserOutlined, ArrowRightOutlined } from '@ant-design/icons';
 const Dashboard: React.FC = () => {
   const {
     state: {
-      ledger: { fields, transactions, balance, error },
+      ledger: { fields, transactions, balance, error, loading },
     },
     actions,
   } = useContext(StoreContext);
@@ -20,6 +20,10 @@ const Dashboard: React.FC = () => {
       actions.getTransactionsForAddress({ address: fields?.address })
   }, []);
 
+  const logout = useCallback(() => {
+    console.log('logging out');
+    actions.logout();
+  },[actions])
 
   console.log('balance', balance);
 
@@ -45,7 +49,7 @@ const Dashboard: React.FC = () => {
               className="extraAvatar"
               icon={<ArrowRightOutlined />}
             />
-            <Link to={Pages.login} key="login">
+            <Link to={Pages.login} key="login" onClick={logout}>
               Sign out
             </Link>
           </div>,
@@ -63,7 +67,7 @@ const Dashboard: React.FC = () => {
 
       <div className="firstColumn" >
         <Card title="Jobcoin Balance" bordered={false}>
-          {balance}
+          {loading? <Spin/> : balance}
         </Card>
         <Card title="Send Jobcoin" bordered={false}>
           24242525252
