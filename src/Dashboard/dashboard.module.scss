@@ -2,7 +2,7 @@
   display: grid;
   grid-template-rows: max-content 1fr;
   grid-template-columns: 20rem 1fr;
-  background: var(--primary-background);
+  background: var(--quaternary-background);
   height: 100%;
 
   :global {
@@ -75,13 +75,13 @@
 
     .ant-card-head {
       color: var(--neutral-color);
-      background: var(--tertiary-background);
+      background: var(--secondary-background);
       border-bottom: 1px solid var(--linebreak-color);
     }
 
     .ant-card-body {
       color: var(--neutral-color);
-      background: var(--secondary-background);
+      background: var(--primary-background);
     }
 
     .ant-card {

@@ -7,25 +7,6 @@ import {
   logout,
 } from '../actions/actions';
 
-export interface FieldData {
-  name: string[];
-  value: any;
-  touched: boolean;
-  validating: boolean;
-  errors: string[];
-}
-
-export type LoginFieldKeys = keyof LoginFields;
-
-type FieldError = {
-  [key in LoginFieldKeys]?: string[];
-};
-
-export interface LoginFields {
-  address: string;
-  errors: FieldError;
-}
-
 export interface Transaction {
   timestamp: string;
   fromAddress: string;
@@ -33,8 +14,22 @@ export interface Transaction {
   amount: string;
 }
 
+export interface LoginFields {
+  address: string;
+}
+
+export interface SendJobcoinFields {
+  fromAddress: string;
+  amount: string;
+  toAddress: string;
+}
+
+export interface ApiResponse {
+  error: string;
+}
+
 export interface Ledger {
-  fields?: LoginFields | null;
+  address?: string | null;
   balance?: string | null;
   transactions?: Transaction[] | null;
   error?: string | null;
@@ -64,13 +59,13 @@ export type Action =
   | { type: ActionTypes.updateLedger; payload: State['ledger'] }
   | {
       type: ActionTypes.getTransactionsForAddress;
-      payload: Partial<LoginFields>;
+      payload: State['ledger'];
     }
   | {
       type: ActionTypes.receiveTransactionsForAddress;
       payload: State['ledger'];
     }
-  | { type: ActionTypes.sendCoins; payload: State['ledger'] }
+  | { type: ActionTypes.sendCoins; payload: SendJobcoinFields }
   | { type: ActionTypes.receiveError; payload: State['ledger'] }
   | { type: ActionTypes.logout };
 
