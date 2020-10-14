@@ -1,15 +1,19 @@
-import { Action, ActionTypes, ApiResponse } from '../store/types';
+import {
+  Action,
+  ActionIdentity,
+  ActionTypes,
+  ApiResponse,
+} from '../store/types';
 import fetchJsonp, { Response as JsonpResponse } from 'fetch-jsonp';
 import { takeEvery } from './middleware';
 
 const proxy = 'https://cors-anywhere.herokuapp.com/';
 
-export async function getTransactionForAddress(
-  action: Action
+export async function getTransactionForAddress<T extends ActionIdentity>(
+  action: T
 ): Promise<Action> {
   console.log('getting transaction for address', action);
-  const address = action.payload.address;
-  //const address = 'Banana';
+  const address = action.payload!.address;
 
   try {
     const response: JsonpResponse = await fetchJsonp(
@@ -33,11 +37,10 @@ export async function getTransactionForAddress(
   }
 }
 
-export async function sendCoins(action: Action): Promise<Action> {
+export async function sendCoins<T extends ActionIdentity>(
+  action: T
+): Promise<Action> {
   try {
-    /*    const action = {
-      payload: { toAddress: 'Clove', fromAddress: 'Banana', amount: 1 },
-    }; */
     const response: Response = await fetch(
       proxy + 'http://jobcoin.gemini.com/germinate-deepness/api/transactions',
       {
@@ -57,7 +60,7 @@ export async function sendCoins(action: Action): Promise<Action> {
 
     return {
       type: ActionTypes.getTransactionsForAddress,
-      payload: { address: action.payload.fromAddress },
+      payload: { address: action.payload!.fromAddress },
     };
   } catch (error) {
     return {

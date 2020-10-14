@@ -1,16 +1,17 @@
 import match from 'conditional-expression';
-import { Action } from '../store/types';
+import { Action, ActionIdentity } from '../store/types';
 import { ledgerMiddleware } from './ledgerMiddleware';
+import { Dispatch } from 'react';
 
 interface TakeEvery {
   actionName: string;
-  functionCall: (action: Action) => Promise<Action>;
+  functionCall: <T extends ActionIdentity>(action: T) => Promise<Action>;
 }
 const middlewares = [ledgerMiddleware];
 
 export const takeEvery = (
   actionName: string,
-  functionCall: (action: Action) => Promise<Action>
+  functionCall: <T extends ActionIdentity>(action: T) => Promise<Action>
 ): TakeEvery => {
   return {
     actionName,
@@ -21,7 +22,9 @@ export const takeEvery = (
 /***
  * applyMiddleware: the function that will be executed before any dispatched event
  */
-export const applyMiddleware = (dispatch: any) => (action: Action) =>
+export const applyMiddleware = (dispatch: Dispatch<Action>) => (
+  action: Action
+) =>
   dispatch(action) ||
   middlewares.forEach((useMiddleware) => {
     let value = null;

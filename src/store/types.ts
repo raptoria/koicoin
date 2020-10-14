@@ -55,6 +55,11 @@ export const enum ActionTypes {
   logout = 'LOGOUT',
 }
 
+export interface ActionIdentity {
+  type: string;
+  payload?: Partial<Ledger & SendJobcoinFields>;
+}
+
 export type Action =
   | { type: ActionTypes.updateLedger; payload: State['ledger'] }
   | {
