@@ -1,4 +1,13 @@
-import { Alert, Card, PageHeader, Spin, Form, Button, Input } from 'antd';
+import {
+  Alert,
+  Card,
+  PageHeader,
+  Spin,
+  Form,
+  Button,
+  Input,
+  Empty,
+} from 'antd';
 import React, { useCallback, useContext, useEffect, useMemo } from 'react';
 import { Link } from 'react-router-dom';
 import { StoreContext } from '../store/store';
@@ -131,7 +140,9 @@ const Dashboard: React.FC = () => {
           {loading ? <Spin className="loadingIndicator" /> : null}
           {transactions && transactions.length > 0 ? (
             <SankeyGraph data={getMemoizedSankeyData} />
-          ) : null}
+          ) : (
+            <Empty image={Empty.PRESENTED_IMAGE_SIMPLE} />
+          )}
         </Card>
       </div>
     </div>

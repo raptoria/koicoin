@@ -45,6 +45,9 @@
         &.graphCard {
           .ant-card-body {
             color: black;
+            display: flex;
+            align-items: center;
+            justify-content: center;
           }
         }
       }
