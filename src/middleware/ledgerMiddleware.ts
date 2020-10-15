@@ -12,7 +12,7 @@ const proxy = 'https://cors-anywhere.herokuapp.com/';
 export async function getTransactionForAddress<T extends ActionIdentity>(
   action: T
 ): Promise<Action> {
-  console.log('getting transaction for address', action);
+  console.log('getting transaction for address');
   const address = action.payload!.address;
 
   try {
