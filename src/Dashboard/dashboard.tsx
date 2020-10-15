@@ -13,6 +13,7 @@ import {
   SendOutlined,
 } from '@ant-design/icons';
 import { SankeyGraph } from './graph/sankey';
+import { Data, SankeyDataNode, SankeyProps } from '@nivo/sankey';
 
 const Dashboard: React.FC = () => {
   const {
@@ -39,7 +40,7 @@ const Dashboard: React.FC = () => {
     [actions]
   );
 
-  const getSankeyData = useMemo(() => {
+  const getSankeyData: Data['data'] = useMemo(() => {
     /*    const nodes = 
     return {
       nodes,
