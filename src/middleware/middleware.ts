@@ -34,7 +34,6 @@ export const applyMiddleware = (dispatch: Dispatch<Action>) => (
       value = middleWare.next().value as TakeEvery;
 
       if (value !== undefined) {
-        //console.log('middleware has a new value', value.actionName);
         match(value)
           .on((take: TakeEvery) => take.actionName === action.type)
           .then((takeEveryResult: TakeEvery) =>

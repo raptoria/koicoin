@@ -10,7 +10,6 @@ import { takeEvery } from './middleware';
 export async function getTransactionForAddress<T extends ActionIdentity>(
   action: T
 ): Promise<Action> {
-  console.log('getting transaction for address');
   const address = action.payload!.address;
 
   try {
@@ -56,7 +55,6 @@ export async function sendCoins<T extends ActionIdentity>(
     if (!response.ok) {
       throw new Error(result.error);
     }
-    console.log('sending coins');
 
     return {
       type: ActionTypes.getTransactionsForAddress,

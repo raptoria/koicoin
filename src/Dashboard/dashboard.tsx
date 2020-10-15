@@ -39,8 +39,6 @@ const Dashboard: React.FC = () => {
     [actions]
   );
 
-  console.log('address', address);
-
   const getMemoizedSankeyData = useMemo(
     () => getSankeyData(transactions, address),
     [transactions]

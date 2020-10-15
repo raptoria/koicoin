@@ -5,7 +5,6 @@ import { useHistory } from 'react-router-dom';
 import { StoreContext } from '../store/store';
 import { LoginFields, Pages } from '../store/types';
 import styles from './login.module.scss';
-
 import logo from '../assets/images/logo.png';
 
 const Login: React.FC = () => {

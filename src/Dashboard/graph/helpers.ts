@@ -50,7 +50,7 @@ const nettedTransactions: (
   }
 
   for (let [key, value] of Object.entries(toCurrentAddress)) {
-    if (!fromCurrentAddress[key]) {
+    if (!fromCurrentAddress[key] && value !== 0) {
       nettedTransactions.push({
         target: currentAddress!,
         source: key!,
@@ -58,7 +58,7 @@ const nettedTransactions: (
       });
     }
   }
-
+  console.log('netted transactions', nettedTransactions);
   return nettedTransactions;
 };
 
@@ -89,7 +89,7 @@ export const getSankeyData: (
       id: a as string,
     });
   }
-  console.log('nodes are', nodes);
+
   return {
     nodes,
     links: nettedData,
