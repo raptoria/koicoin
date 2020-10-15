@@ -1,4 +1,4 @@
-import React, { useReducer, useEffect, createContext } from 'react';
+import React, { useReducer, createContext } from 'react';
 import { StoreContextType, State, Action } from './types';
 import { ledger } from '../reducers/ledger';
 import { useActions } from '../actions/actions';

@@ -11,7 +11,7 @@ import {
 import '@testing-library/jest-dom/extend-expect';
 
 describe('Filter function', () => {
-  test('it should filter by a search term (link)', () => {
-    // actual test
+  test('todo', () => {
+    // todo
   });
 });

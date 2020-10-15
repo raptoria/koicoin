@@ -5,9 +5,15 @@ interface AddressNetAmounts {
   [key: string]: number;
 }
 
+/**
+ * Uses the transaction and current address to compute net
+ * transactions, so no circular references will ever be sent to Sankey graph
+ * @param transactions
+ * @param currentAddress
+ */
 const nettedTransactions: (
   transactions: Transaction[],
-  currentAddress: string | undefined | null
+  currentAddress: string
 ) => SankeyDataLink[] = (transactions, currentAddress) => {
   let fromCurrentAddress: AddressNetAmounts = {};
   let toCurrentAddress: AddressNetAmounts = {};
@@ -36,15 +42,15 @@ const nettedTransactions: (
     }
     if (nettedValue > 0) {
       nettedTransactions.push({
-        target: key!,
-        source: currentAddress!,
-        value: nettedValue!,
+        target: key,
+        source: currentAddress,
+        value: nettedValue,
       });
     } else if (nettedValue < 0) {
       nettedTransactions.push({
-        target: currentAddress!,
-        source: key!,
-        value: nettedValue!,
+        target: currentAddress,
+        source: key,
+        value: Math.abs(nettedValue),
       });
     }
   }
@@ -62,22 +68,23 @@ const nettedTransactions: (
   return nettedTransactions;
 };
 
+/**
+ * transforms transactions into a data object the SankeyGraph understands
+ * @param transactions
+ * @param address
+ */
 export const getSankeyData: (
   t: Transaction[] | null | undefined,
   address: string | null | undefined
-) => Data['data'] = (transactions, address) => {
+) => Data['data'] | null = (transactions, address) => {
   let uniqueAddresses = new Set();
   let nodes: SankeyDataNode[] = [];
-  let links: SankeyDataLink[] = [];
 
-  if (!transactions) {
-    return {
-      nodes,
-      links,
-    };
+  const nettedData = nettedTransactions(transactions!, address!);
+
+  if (nettedData.length === 0) {
+    return null;
   }
-
-  const nettedData = nettedTransactions(transactions, address);
 
   for (let t of nettedData) {
     uniqueAddresses.add(t.source);

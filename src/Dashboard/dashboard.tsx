@@ -48,10 +48,14 @@ const Dashboard: React.FC = () => {
     [actions]
   );
 
-  const getMemoizedSankeyData = useMemo(
-    () => getSankeyData(transactions, address),
-    [transactions]
-  );
+  const getMemoizedSankeyData = useMemo(() => {
+    let data = null;
+    if (transactions && transactions.length > 0) {
+      data = getSankeyData(transactions, address);
+    }
+
+    return data;
+  }, [transactions]);
 
   return (
     <div className={styles.dashboard}>
@@ -138,7 +142,7 @@ const Dashboard: React.FC = () => {
           className="graphCard"
         >
           {loading ? <Spin className="loadingIndicator" /> : null}
-          {transactions && transactions.length > 0 ? (
+          {getMemoizedSankeyData ? (
             <SankeyGraph data={getMemoizedSankeyData} />
           ) : (
             <Empty image={Empty.PRESENTED_IMAGE_SIMPLE} />
