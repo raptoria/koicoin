@@ -1,13 +1,4 @@
-import {
-  Alert,
-  Card,
-  PageHeader,
-  Spin,
-  Form,
-  Button,
-  Input,
-  Empty,
-} from 'antd';
+import { Alert, Card, PageHeader, Spin, Form, Button, Input } from 'antd';
 import React, { useCallback, useContext, useEffect, useMemo } from 'react';
 import { Link } from 'react-router-dom';
 import { StoreContext } from '../store/store';
@@ -37,7 +28,6 @@ const Dashboard: React.FC = () => {
   }, []);
 
   const logout = useCallback(() => {
-    console.log('logging out');
     actions.logout();
   }, [actions]);
 
@@ -135,12 +125,15 @@ const Dashboard: React.FC = () => {
         </Card>
       </div>
       <div className="secondColumn">
-        <Card title="Jobcoin History Graph" bordered={false}>
-          {transactions ? (
+        <Card
+          title="Jobcoin History Graph"
+          bordered={false}
+          className="graphCard"
+        >
+          {loading ? <Spin className="loadingIndicator" /> : null}
+          {transactions && transactions.length > 0 ? (
             <SankeyGraph data={getMemoizedSankeyData} />
-          ) : (
-            <Empty />
-          )}
+          ) : null}
         </Card>
       </div>
     </div>

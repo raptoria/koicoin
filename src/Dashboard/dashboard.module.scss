@@ -11,6 +11,13 @@
       margin-bottom: var(--spacing-md);
     }
 
+    .loadingIndicator {
+      position: absolute;
+      bottom: 50%;
+      left: 50%;
+      z-index: 1;
+    }
+
     .ant-alert-message,
     .ant-alert-error .ant-alert-icon {
       color: #ffd7ca;
@@ -34,6 +41,12 @@
 
       .ant-card {
         height: 100%;
+
+        &.graphCard {
+          .ant-card-body {
+            color: black;
+          }
+        }
       }
     }
 

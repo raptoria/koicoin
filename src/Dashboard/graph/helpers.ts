@@ -89,7 +89,7 @@ export const getSankeyData: (
       id: a as string,
     });
   }
-
+  console.log('nodes are', nodes);
   return {
     nodes,
     links: nettedData,
