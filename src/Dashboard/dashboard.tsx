@@ -1,4 +1,13 @@
-import { Alert, Card, PageHeader, Spin, Form, Button, Input } from 'antd';
+import {
+  Alert,
+  Card,
+  PageHeader,
+  Spin,
+  Form,
+  Button,
+  Input,
+  Empty,
+} from 'antd';
 import React, { useCallback, useContext, useEffect, useMemo } from 'react';
 import { Link } from 'react-router-dom';
 import { StoreContext } from '../store/store';
@@ -13,7 +22,7 @@ import {
   SendOutlined,
 } from '@ant-design/icons';
 import { SankeyGraph } from './graph/sankey';
-import { Data, SankeyDataNode, SankeyProps } from '@nivo/sankey';
+import { getSankeyData } from './graph/helpers';
 
 const Dashboard: React.FC = () => {
   const {
@@ -40,100 +49,12 @@ const Dashboard: React.FC = () => {
     [actions]
   );
 
-  const getSankeyData: Data['data'] = useMemo(() => {
-    /*    const nodes = 
-    return {
-      nodes,
-      links
-    } */
-    return {
-      nodes: [
-        {
-          id: 'John',
-          color: 'hsl(235, 70%, 50%)',
-        },
-        {
-          id: 'Raoul',
-          color: 'hsl(260, 70%, 50%)',
-        },
-        {
-          id: 'Jane',
-          color: 'hsl(94, 70%, 50%)',
-        },
-        {
-          id: 'Marcel',
-          color: 'hsl(10, 70%, 50%)',
-        },
-        {
-          id: 'Ibrahim',
-          color: 'hsl(283, 70%, 50%)',
-        },
-        {
-          id: 'Junko',
-          color: 'hsl(310, 70%, 50%)',
-        },
-      ],
-      links: [
-        {
-          source: 'Marcel',
-          target: 'John',
-          value: 169,
-        },
-        {
-          source: 'Marcel',
-          target: 'Raoul',
-          value: 28,
-        },
-        {
-          source: 'Marcel',
-          target: 'Junko',
-          value: 164,
-        },
-        {
-          source: 'Marcel',
-          target: 'Jane',
-          value: 120,
-        },
-        {
-          source: 'Jane',
-          target: 'Ibrahim',
-          value: 119,
-        },
-        {
-          source: 'Jane',
-          target: 'John',
-          value: 54,
-        },
-        {
-          source: 'Junko',
-          target: 'Ibrahim',
-          value: 21,
-        },
-        {
-          source: 'Junko',
-          target: 'Jane',
-          value: 80,
-        },
-        {
-          source: 'Junko',
-          target: 'Raoul',
-          value: 21,
-        },
-        {
-          source: 'John',
-          target: 'Ibrahim',
-          value: 122,
-        },
-        {
-          source: 'John',
-          target: 'Raoul',
-          value: 179,
-        },
-      ],
-    };
-  }, [transactions]);
-
   console.log('address', address);
+
+  const getMemoizedSankeyData = useMemo(
+    () => getSankeyData(transactions, address),
+    [transactions]
+  );
 
   return (
     <div className={styles.dashboard}>
@@ -215,7 +136,11 @@ const Dashboard: React.FC = () => {
       </div>
       <div className="secondColumn">
         <Card title="Jobcoin History Graph" bordered={false}>
-          <SankeyGraph data={getSankeyData} />
+          {transactions ? (
+            <SankeyGraph data={getMemoizedSankeyData} />
+          ) : (
+            <Empty />
+          )}
         </Card>
       </div>
     </div>
