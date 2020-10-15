@@ -21,7 +21,7 @@ import {
   BankOutlined,
   SendOutlined,
 } from '@ant-design/icons';
-import { SankeyGraph } from './graph/sankey';
+import { SankeyGraph } from './graph/Sankey';
 import { getSankeyData } from './graph/helpers';
 
 const Dashboard: React.FC = () => {

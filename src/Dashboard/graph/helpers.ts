@@ -58,9 +58,9 @@ const nettedTransactions: (
   for (let [key, value] of Object.entries(toCurrentAddress)) {
     if (!fromCurrentAddress[key] && value !== 0) {
       nettedTransactions.push({
-        target: currentAddress!,
-        source: key!,
-        value: value!,
+        target: currentAddress,
+        source: key,
+        value: value,
       });
     }
   }
