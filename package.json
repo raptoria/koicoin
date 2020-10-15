@@ -29,6 +29,7 @@
     }
   },
   "dependencies": {
+    "@nivo/sankey": "^0.62.0",
     "@types/jest": "^26.0.14",
     "@types/lodash-es": "^4.17.3",
     "antd": "^4.6.3",

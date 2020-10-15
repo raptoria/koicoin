@@ -7,8 +7,6 @@ import {
 import fetchJsonp, { Response as JsonpResponse } from 'fetch-jsonp';
 import { takeEvery } from './middleware';
 
-const proxy = 'https://cors-anywhere.herokuapp.com/';
-
 export async function getTransactionForAddress<T extends ActionIdentity>(
   action: T
 ): Promise<Action> {
@@ -40,6 +38,8 @@ export async function getTransactionForAddress<T extends ActionIdentity>(
 export async function sendCoins<T extends ActionIdentity>(
   action: T
 ): Promise<Action> {
+  const proxy = 'https://cors-anywhere.herokuapp.com/';
+
   try {
     const response: Response = await fetch(
       proxy + 'http://jobcoin.gemini.com/germinate-deepness/api/transactions',
