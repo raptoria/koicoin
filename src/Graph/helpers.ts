@@ -1,5 +1,5 @@
 import { Data, SankeyDataLink, SankeyDataNode } from '@nivo/sankey';
-import { Transaction } from '../../store/types';
+import { Transaction } from '../store/types';
 
 interface AddressNetAmounts {
   [key: string]: number;

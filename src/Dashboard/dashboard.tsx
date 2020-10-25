@@ -1,28 +1,15 @@
-import {
-  Alert,
-  Card,
-  PageHeader,
-  Spin,
-  Form,
-  Button,
-  Input,
-  Empty,
-} from 'antd';
+import { Alert, Card, PageHeader, Spin, Empty } from 'antd';
 import React, { useCallback, useContext, useEffect, useMemo } from 'react';
 import { Link } from 'react-router-dom';
 import { StoreContext } from '../store/store';
-import { Pages, SendJobcoinFields } from '../store/types';
+import { Pages } from '../store/types';
 import styles from './dashboard.module.scss';
 import logo from '../assets/images/logo.png';
 import Avatar from 'antd/lib/avatar/avatar';
-import {
-  UserOutlined,
-  ArrowRightOutlined,
-  BankOutlined,
-  SendOutlined,
-} from '@ant-design/icons';
-import { SankeyGraph } from './graph/Sankey';
-import { getSankeyData } from './graph/helpers';
+import { UserOutlined, ArrowRightOutlined } from '@ant-design/icons';
+import { SankeyGraph } from '../Graph/Sankey';
+import { getSankeyData } from '../Graph/helpers';
+import SendJobcoinForm from '../Form/SendJobcoin';
 
 const Dashboard: React.FC = () => {
   const {
@@ -39,14 +26,6 @@ const Dashboard: React.FC = () => {
   const logout = useCallback(() => {
     actions.logout();
   }, [actions]);
-
-  const onFinish = useCallback(
-    (fields: SendJobcoinFields) => {
-      const { toAddress, amount } = fields;
-      actions.sendCoins({ fromAddress: address!, toAddress, amount });
-    },
-    [actions]
-  );
 
   const getMemoizedSankeyData = useMemo(() => {
     let data = null;
@@ -95,44 +74,7 @@ const Dashboard: React.FC = () => {
           {loading ? <Spin /> : balance}
         </Card>
         <Card title="Send Jobcoin" bordered={false}>
-          <Form onFinish={onFinish}>
-            <Form.Item
-              name="toAddress"
-              rules={[
-                {
-                  required: true,
-                  message: 'Please input a destination',
-                },
-              ]}
-            >
-              <Input
-                prefix={<BankOutlined className="inputIcon" />}
-                placeholder="Destination Address"
-              />
-            </Form.Item>
-            <Form.Item
-              name="amount"
-              rules={[
-                {
-                  required: true,
-                  message: 'Please input amount',
-                },
-              ]}
-            >
-              <Input
-                prefix={<SendOutlined className="inputIcon" />}
-                placeholder="Amount to Send"
-              />
-            </Form.Item>
-
-            <Button
-              type="primary"
-              htmlType="submit"
-              data-testid="sendJobcoinButton"
-            >
-              Send Jobcoins
-            </Button>
-          </Form>
+          <SendJobcoinForm />
         </Card>
       </div>
       <div className="secondColumn">
