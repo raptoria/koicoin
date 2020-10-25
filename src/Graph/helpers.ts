@@ -79,7 +79,7 @@ export const getSankeyData: (
 ) => Data['data'] | null = (transactions, address) => {
   let uniqueAddresses = new Set();
   let nodes: SankeyDataNode[] = [];
-  debugger;
+
   const nettedData = nettedTransactions(transactions!, address!);
 
   if (nettedData.length === 0) {
