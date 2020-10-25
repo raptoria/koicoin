@@ -36,14 +36,16 @@ describe('Login', () => {
 
   it('the login form has validation', async () => {
     fireEvent.click(screen.getByRole('button'));
-    await waitFor(() => screen.getByRole('alert'));
-    expect(screen.getByRole('alert')).toHaveTextContent(
-      'Please input a valid address'
-    );
+    await waitFor(() => {
+      expect(screen.getByRole('alert')).toHaveTextContent(
+        'Please input a valid address'
+      );
+    });
 
     fireEvent.change(addressInputNode, { target: { value: 'Banana' } });
-    await waitFor(() => screen.getByRole('alert'));
-    expect(addressInputNode.value).toBe('Banana');
+    await waitFor(() => {
+      expect(addressInputNode.value).toBe('Banana');
+    });
 
     /*     fireEvent.click(screen.getByRole('button'));
     expect(screen.getByText(/Jobcoin History Graph/i)).toBeInTheDocument();

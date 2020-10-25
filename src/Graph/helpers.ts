@@ -25,11 +25,11 @@ const nettedTransactions: (
     }
     if (t.fromAddress === currentAddress) {
       const currentTotal: number = fromCurrentAddress[t.toAddress] || 0;
-      fromCurrentAddress[t.toAddress] = currentTotal + parseInt(t.amount);
+      fromCurrentAddress[t.toAddress] = currentTotal + parseFloat(t.amount);
     }
     if (t.toAddress === currentAddress) {
       const currentTotal: number = toCurrentAddress[t.fromAddress] || 0;
-      toCurrentAddress[t.fromAddress] = currentTotal + parseInt(t.amount);
+      toCurrentAddress[t.fromAddress] = currentTotal + parseFloat(t.amount);
     }
   }
 
@@ -38,7 +38,7 @@ const nettedTransactions: (
     let nettedValue = value;
 
     if (toAddressValue) {
-      nettedValue = value - toAddressValue;
+      nettedValue = parseFloat((value - toAddressValue).toFixed(2));
     }
     if (nettedValue > 0) {
       nettedTransactions.push({
@@ -79,7 +79,7 @@ export const getSankeyData: (
 ) => Data['data'] | null = (transactions, address) => {
   let uniqueAddresses = new Set();
   let nodes: SankeyDataNode[] = [];
-
+  debugger;
   const nettedData = nettedTransactions(transactions!, address!);
 
   if (nettedData.length === 0) {
