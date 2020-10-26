@@ -1,4 +1,4 @@
-import { Alert, Card, PageHeader, Spin, Empty } from 'antd';
+import { Alert, Card, PageHeader, Spin, Empty, Switch } from 'antd';
 import React, { useCallback, useContext, useEffect, useMemo } from 'react';
 import { Link } from 'react-router-dom';
 import { StoreContext } from '../store/store';
@@ -15,6 +15,7 @@ const Dashboard: React.FC = () => {
   const {
     state: {
       ledger: { address, transactions, balance, error, loading },
+      theme: { dark },
     },
     actions,
   } = useContext(StoreContext);
@@ -36,6 +37,10 @@ const Dashboard: React.FC = () => {
     return data;
   }, [transactions]);
 
+  const onThemeChange = (checked: boolean) => {
+    actions.updateTheme({ dark: checked });
+  };
+
   return (
     <div className={styles.dashboard}>
       <header>
@@ -44,6 +49,11 @@ const Dashboard: React.FC = () => {
           subTitle="Jobcoin sender"
           avatar={{ src: logo }}
           extra={[
+            <Switch
+              key="themeSwitch"
+              defaultChecked
+              onChange={onThemeChange}
+            />,
             <div key="userActions">
               <Avatar
                 key="userIcon"

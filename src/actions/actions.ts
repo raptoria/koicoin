@@ -44,6 +44,13 @@ export const logout = (): Action => {
   };
 };
 
+export const updateTheme = (payload: State['theme']): Action => {
+  return {
+    type: ActionTypes.updateTheme,
+    payload,
+  };
+};
+
 //synonymous with bindActionCreators in mapDispatchToProps, 2nd arg of connect
 export const useActions = (dispatch: Dispatch<Action>) => ({
   updateLedger: (payload: State['ledger']): void =>
@@ -56,4 +63,6 @@ export const useActions = (dispatch: Dispatch<Action>) => ({
   receiveError: (payload: State['ledger']): void =>
     dispatch(receiveError(payload)),
   logout: (): void => dispatch(logout()),
+  updateTheme: (payload: State['theme']): void =>
+    dispatch(updateTheme(payload)),
 });

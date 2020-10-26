@@ -1,5 +1,5 @@
 import { Transaction } from '../../store/types';
-import { getSankeyData } from '../helpers';
+import { getSankeyData, balancesOverTime } from '../helpers';
 
 describe('sankey helpers', () => {
   describe('links and nodes', () => {
@@ -287,5 +287,55 @@ describe('sankey helpers', () => {
         id: 'Banana',
       },
     ]);
+  });
+  describe('balances over time', () => {
+    it('returns the correct result', () => {
+      const transactions: Transaction[] = [
+        {
+          timestamp: '2020-10-15T17:18:18.665Z',
+          fromAddress: 'Clove',
+          toAddress: 'Jimmy',
+          amount: '2',
+        },
+        {
+          timestamp: '2020-10-15T17:29:42.941Z',
+          fromAddress: 'Jimmy',
+          toAddress: 'Banana',
+          amount: '0.2',
+        },
+        {
+          timestamp: '2020-10-15T17:46:19.999Z',
+          fromAddress: 'Clove',
+          toAddress: 'Jimmy',
+          amount: '2',
+        },
+        {
+          timestamp: '2020-10-15T18:08:37.063Z',
+          fromAddress: 'Brian',
+          toAddress: 'Jimmy',
+          amount: '1',
+        },
+      ];
+
+      const result = balancesOverTime(transactions, 'Jimmy');
+      expect(result).toEqual([
+        {
+          timestamp: '2020-10-15T17:18:18.665Z',
+          balance: 2,
+        },
+        {
+          timestamp: '2020-10-15T17:29:42.941Z',
+          balance: 1.8,
+        },
+        {
+          timestamp: '2020-10-15T17:46:19.999Z',
+          balance: 3.8,
+        },
+        {
+          timestamp: '2020-10-15T18:08:37.063Z',
+          balance: 4.8,
+        },
+      ]);
+    });
   });
 });

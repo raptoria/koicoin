@@ -5,6 +5,33 @@ interface AddressNetAmounts {
   [key: string]: number;
 }
 
+interface balance {
+  timestamp: string;
+  balance: number;
+}
+
+//date, and a balance for that point im time for given address
+export const balancesOverTime: (
+  transactions: Transaction[],
+  currentAddress: string
+) => any = (transactions, currentAddress) => {
+  let startingBalance: number = 0;
+  let balanceList: balance[] = [];
+
+  for (let t of transactions) {
+    const balancesMap: balance = { timestamp: '', balance: 0 };
+    balancesMap.timestamp = t.timestamp;
+    if (t.toAddress === currentAddress) {
+      balancesMap.balance = startingBalance + parseFloat(t.amount);
+    } else if (t.fromAddress === currentAddress) {
+      balancesMap.balance = startingBalance - parseFloat(t.amount);
+    }
+    startingBalance = balancesMap.balance as number;
+    balanceList.push(balancesMap);
+  }
+  return balanceList;
+};
+
 /**
  * Uses the transaction and current address to compute net
  * transactions, so no circular references will ever be sent to Sankey graph

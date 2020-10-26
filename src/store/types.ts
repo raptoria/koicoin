@@ -5,6 +5,7 @@ import {
   updateLedger,
   receiveError,
   logout,
+  updateTheme,
 } from '../actions/actions';
 
 export interface Transaction {
@@ -36,9 +37,14 @@ export interface Ledger {
   loading?: boolean;
 }
 
+export interface Theme {
+  dark: boolean;
+}
+
 export interface State {
   ledger: Ledger;
-  [index: string]: Ledger;
+  theme: Theme;
+  [index: string]: Ledger | Theme;
 }
 
 export const enum Pages {
@@ -47,6 +53,7 @@ export const enum Pages {
 }
 
 export const enum ActionTypes {
+  updateTheme = 'UPDATE_THEME',
   updateLedger = 'UPDATE_LEDGER',
   getTransactionsForAddress = 'TRANSACTIONS_FOR_ADDRESS',
   receiveTransactionsForAddress = 'RECEIVE_TRANSACTIONS_FOR_ADDRESS',
@@ -57,7 +64,7 @@ export const enum ActionTypes {
 
 export interface ActionIdentity {
   type: string;
-  payload?: Partial<Ledger & SendJobcoinFields>;
+  payload?: Partial<Ledger & SendJobcoinFields & Theme>;
 }
 
 export type Action =
@@ -72,9 +79,11 @@ export type Action =
     }
   | { type: ActionTypes.sendCoins; payload: SendJobcoinFields }
   | { type: ActionTypes.receiveError; payload: State['ledger'] }
+  | { type: ActionTypes.updateTheme; payload: State['theme'] }
   | { type: ActionTypes.logout };
 
 export interface Actions {
+  updateTheme: (...p: Parameters<typeof updateTheme>) => void;
   updateLedger: (...p: Parameters<typeof updateLedger>) => void;
   getTransactionsForAddress: (
     ...p: Parameters<typeof getTransactionsForAddress>
