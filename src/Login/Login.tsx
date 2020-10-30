@@ -29,7 +29,7 @@ const Login: React.FC = () => {
         </h1>
         <hr />
         <h3>
-          Welcome! Sign in With Your <br /> Jobcoin Address
+          Welcome! Sign in With Your <br /> Koicoin Address
         </h3>
         <Form onFinish={onFinish}>
           <Form.Item
@@ -41,7 +41,7 @@ const Login: React.FC = () => {
             <Input
               size="large"
               prefix={<HomeOutlined className="inputIcon" />}
-              placeholder="Jobcoin Address"
+              placeholder="Koicoin Address"
             />
           </Form.Item>
 
