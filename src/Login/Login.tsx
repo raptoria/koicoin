@@ -25,7 +25,7 @@ const Login: React.FC = () => {
       <div className="form">
         <img src={logo} className="logo" />
         <h1>
-          job<span>coin</span>
+          koi<span>coin</span>
         </h1>
         <hr />
         <h3>

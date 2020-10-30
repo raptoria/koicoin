@@ -1,10 +1,10 @@
 import React, { useCallback, useContext } from 'react';
 import { Button, Input, Form } from 'antd';
-import { SendJobcoinFields } from '../store/types';
+import { SendKoicoinFields } from '../store/types';
 import { BankOutlined, SendOutlined } from '@ant-design/icons';
 import { StoreContext } from '../store/store';
 
-const SendJobcoinForm: React.FC = () => {
+const SendCoinForm: React.FC = () => {
   const {
     state: {
       ledger: { address },
@@ -12,7 +12,7 @@ const SendJobcoinForm: React.FC = () => {
     actions,
   } = useContext(StoreContext);
   const onFinish = useCallback(
-    (fields: SendJobcoinFields) => {
+    (fields: SendKoicoinFields) => {
       const { toAddress, amount } = fields;
       actions.sendCoins({ fromAddress: address!, toAddress, amount });
     },
@@ -50,11 +50,11 @@ const SendJobcoinForm: React.FC = () => {
         />
       </Form.Item>
 
-      <Button type="primary" htmlType="submit" data-testid="sendJobcoinButton">
-        Send Jobcoins
+      <Button type="primary" htmlType="submit" data-testid="sendKoicoinButton">
+        Send Koicoins
       </Button>
     </Form>
   );
 };
 
-export default SendJobcoinForm;
+export default SendCoinForm;

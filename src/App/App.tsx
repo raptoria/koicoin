@@ -8,7 +8,7 @@ import {
 } from 'react-router-dom';
 import './app.scss';
 import { Pages } from '../store/types';
-import Dashboard from '../Dashboard/Dashboard';
+import Dashboard from '../Dashboard/dashboard';
 
 function App() {
   return (
@@ -17,8 +17,8 @@ function App() {
         <Route exact path={Pages.login} component={Login} />
         <Route exact path={Pages.dashboard} component={Dashboard} />
         <Route exact path="/">
-        <Redirect to={Pages.login} />
-      </Route>
+          <Redirect to={Pages.login} />
+        </Route>
       </Switch>
     </Router>
   );

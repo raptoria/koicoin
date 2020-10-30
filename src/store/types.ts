@@ -19,7 +19,7 @@ export interface LoginFields {
   address: string;
 }
 
-export interface SendJobcoinFields {
+export interface SendKoicoinFields {
   fromAddress: string;
   amount: string;
   toAddress: string;
@@ -64,7 +64,7 @@ export const enum ActionTypes {
 
 export interface ActionIdentity {
   type: string;
-  payload?: Partial<Ledger & SendJobcoinFields & Theme>;
+  payload?: Partial<Ledger & SendKoicoinFields & Theme>;
 }
 
 export type Action =
@@ -77,7 +77,7 @@ export type Action =
       type: ActionTypes.receiveTransactionsForAddress;
       payload: State['ledger'];
     }
-  | { type: ActionTypes.sendCoins; payload: SendJobcoinFields }
+  | { type: ActionTypes.sendCoins; payload: SendKoicoinFields }
   | { type: ActionTypes.receiveError; payload: State['ledger'] }
   | { type: ActionTypes.updateTheme; payload: State['theme'] }
   | { type: ActionTypes.logout };

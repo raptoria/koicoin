@@ -86,7 +86,7 @@ module.exports = {
     new HtmlWebpackPlugin({
       favicon: 'src/assets/images/favicon.ico',
       template: './src/index.html',
-      title: 'Jobcoin Dashboard',
+      title: 'Koicoin Dashboard',
     }),
     new MiniCssExtractPlugin({
       // Options similar to the same options in webpackOptions.output

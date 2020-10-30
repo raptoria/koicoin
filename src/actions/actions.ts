@@ -1,4 +1,4 @@
-import { ActionTypes, Action, State, SendJobcoinFields } from '../store/types';
+import { ActionTypes, Action, State, SendKoicoinFields } from '../store/types';
 import { Dispatch } from 'react';
 
 export const updateLedger = (payload: State['ledger']): Action => {
@@ -24,7 +24,7 @@ export const receiveTransactionsForAddress = (
   };
 };
 
-export const sendCoins = (payload: SendJobcoinFields): Action => {
+export const sendCoins = (payload: SendKoicoinFields): Action => {
   return {
     type: ActionTypes.sendCoins,
     payload,
@@ -59,7 +59,7 @@ export const useActions = (dispatch: Dispatch<Action>) => ({
     dispatch(getTransactionsForAddress(payload)),
   receiveTransactionsForAddress: (payload: State['ledger']): void =>
     dispatch(receiveTransactionsForAddress(payload)),
-  sendCoins: (payload: SendJobcoinFields): void => dispatch(sendCoins(payload)),
+  sendCoins: (payload: SendKoicoinFields): void => dispatch(sendCoins(payload)),
   receiveError: (payload: State['ledger']): void =>
     dispatch(receiveError(payload)),
   logout: (): void => dispatch(logout()),

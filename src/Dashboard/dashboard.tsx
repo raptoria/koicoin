@@ -9,7 +9,7 @@ import Avatar from 'antd/lib/avatar/avatar';
 import { UserOutlined, ArrowRightOutlined } from '@ant-design/icons';
 import { SankeyGraph } from '../Graph/Sankey';
 import { getSankeyData } from '../Graph/helpers';
-import SendJobcoinForm from '../Form/SendJobcoin';
+import SendCoinForm from '../Form/Sendcoin';
 
 const Dashboard: React.FC = () => {
   const {
@@ -46,7 +46,7 @@ const Dashboard: React.FC = () => {
       <header>
         <PageHeader
           title=""
-          subTitle="Jobcoin sender"
+          subTitle="Koicoin sender"
           avatar={{ src: logo }}
           extra={[
             <Switch
@@ -80,16 +80,16 @@ const Dashboard: React.FC = () => {
       </header>
 
       <div className="firstColumn">
-        <Card title="Jobcoin Balance" bordered={false}>
+        <Card title="Koicoin Balance" bordered={false}>
           {loading ? <Spin /> : balance}
         </Card>
-        <Card title="Send Jobcoin" bordered={false}>
-          <SendJobcoinForm />
+        <Card title="Send Koicoin" bordered={false}>
+          <SendCoinForm />
         </Card>
       </div>
       <div className="secondColumn">
         <Card
-          title="Jobcoin History Graph"
+          title="Koicoin History Graph"
           bordered={false}
           className="graphCard"
         >

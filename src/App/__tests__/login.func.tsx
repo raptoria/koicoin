@@ -23,7 +23,7 @@ describe('Login', () => {
         <App />
       </Router>
     );
-    addressInputNode = screen.getByPlaceholderText('Jobcoin Address');
+    addressInputNode = screen.getByPlaceholderText('Koicoin Address');
   });
 
   afterEach(() => {
@@ -48,7 +48,7 @@ describe('Login', () => {
     });
 
     /*     fireEvent.click(screen.getByRole('button'));
-    expect(screen.getByText(/Jobcoin History Graph/i)).toBeInTheDocument();
+    expect(screen.getByText(/Koicoin History Graph/i)).toBeInTheDocument();
     //await waitFor(() => screen.getByPlaceholderText('Destination Address')); */
   });
 });
