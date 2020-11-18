@@ -1,4 +1,4 @@
-React, Context Api in the Redux Style, Typescript, Webpack, React Router, AntD
+React, Context Api in the Redux Style, Typescript, Webpack, React Router, AntDesign
 
 ## install dependencies
 
