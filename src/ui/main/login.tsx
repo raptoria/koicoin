@@ -1,29 +1,33 @@
-import { Button, Form, Input } from 'antd';
-import { HomeOutlined } from '@ant-design/icons';
-import React, { useCallback, useContext } from 'react';
-import { useHistory } from 'react-router-dom';
-import { StoreContext } from '../store/store';
-import { LoginFields, Pages } from '../store/types';
-import styles from './login.module.scss';
-import logo from '../assets/images/logo.png';
+import { Button, Form, Input } from "antd";
+import { HomeOutlined } from "@ant-design/icons";
+import React, { useCallback, useContext } from "react";
+import { StoreContext } from "../store/store";
+import { LoginFields, Pages } from "../store/types";
+import styles from "@/styles/login.module.scss";
+import Image from "next/image";
+import { useRouter } from "next/router";
 
 const Login: React.FC = () => {
   const { actions } = useContext(StoreContext);
-
-  let history = useHistory();
-
+  const router = useRouter();
   const onFinish = useCallback(
     (fields: LoginFields) => {
       actions.updateLedger({ address: fields.address });
-      history.push(Pages.dashboard);
+      router.push("/dashboard");
     },
-    [actions]
+    [actions, router]
   );
 
   return (
     <div className={styles.login}>
       <div className="form">
-        <img src={logo} className="logo" />
+        <Image
+          src="/assets/images/logo.png"
+          unoptimized
+          alt="Koincoin"
+          width="100"
+          height="100"
+        />
         <h1>
           koi<span>coin</span>
         </h1>
@@ -35,13 +39,13 @@ const Login: React.FC = () => {
           <Form.Item
             name="address"
             rules={[
-              { required: true, message: 'Please input a valid address' },
+              { required: true, message: "Please input a valid address" },
             ]}
           >
             <Input
               size="large"
               prefix={<HomeOutlined className="inputIcon" />}
-              placeholder="Koicoin Address"
+              placeholder="Enter Koicoin Address"
             />
           </Form.Item>
 

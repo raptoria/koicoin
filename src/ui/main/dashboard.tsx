@@ -1,15 +1,13 @@
-import { Alert, Card, PageHeader, Spin, Empty } from 'antd';
-import React, { useCallback, useContext, useEffect, useMemo } from 'react';
-import { Link } from 'react-router-dom';
-import { StoreContext } from '../store/store';
-import { Pages } from '../store/types';
-import styles from './dashboard.module.scss';
-import logo from '../assets/images/logo.png';
-import Avatar from 'antd/lib/avatar/avatar';
-import { UserOutlined, ArrowRightOutlined } from '@ant-design/icons';
-import { SankeyGraph } from '../Graph/Sankey';
-import { getSankeyData } from '../Graph/helpers';
-import SendCoinForm from '../Form/Sendcoin';
+import { Alert, Card, Spin, Empty, PageHeader } from "antd";
+import React, { useCallback, useContext, useEffect, useMemo } from "react";
+import { StoreContext } from "@/ui/store/store";
+import styles from "@/styles/dashboard.module.scss";
+import Avatar from "antd/lib/avatar/avatar";
+import { UserOutlined, ArrowRightOutlined } from "@ant-design/icons";
+import { SankeyGraph } from "@/ui/graph/Sankey";
+import { getSankeyData } from "@/ui/graph/helpers";
+import SendCoinForm from "@/ui/form/Sendcoin";
+import Link from "next/link";
 
 const Dashboard: React.FC = () => {
   const {
@@ -43,7 +41,7 @@ const Dashboard: React.FC = () => {
         <PageHeader
           title=""
           subTitle="Koicoin sender"
-          avatar={{ src: logo }}
+          avatar={{ src: "/assets/images/logo.png" }}
           extra={[
             <div key="userActions">
               <Avatar
@@ -59,7 +57,7 @@ const Dashboard: React.FC = () => {
                 className="extraAvatar"
                 icon={<ArrowRightOutlined />}
               />
-              <Link to={Pages.login} key="login" onClick={logout}>
+              <Link href="/" onClick={logout}>
                 Sign out
               </Link>
             </div>,

@@ -8,15 +8,17 @@
   width: 100%;
 }
 
-.ant-input-affix-wrapper {
+.ant-input-affix-wrapper, .ant-input,
+.ant-input-affix-wrapper-status-error:not(.ant-input-affix-wrapper-disabled):not(.ant-input-affix-wrapper-borderless).ant-input-affix-wrapper, .ant-input-affix-wrapper-status-error:not(.ant-input-affix-wrapper-disabled):not(.ant-input-affix-wrapper-borderless).ant-input-affix-wrapper:hover {
+  color: var(--neutral-color);
   background: var(--secondary-background);
   border: none;
 }
 
-.ant-input {
-  color: var(--neutral-color);
-  background: var(--secondary-background);
+.ant-input::placeholder {
+  color: var(--neutral3-color);
 }
+
 .ant-btn-primary {
   background: var(--primary-color);
   border-color: var(--secondary-color);

@@ -6,7 +6,7 @@ import {
   receiveError,
   logout,
   updateTheme,
-} from '../actions/actions';
+} from "@/ui/actions/actions";
 
 export interface Transaction {
   timestamp: string;
@@ -48,18 +48,18 @@ export interface State {
 }
 
 export const enum Pages {
-  login = '/login',
-  dashboard = '/dashboard',
+  login = "/login",
+  dashboard = "/dashboard",
 }
 
 export const enum ActionTypes {
-  updateTheme = 'UPDATE_THEME',
-  updateLedger = 'UPDATE_LEDGER',
-  getTransactionsForAddress = 'TRANSACTIONS_FOR_ADDRESS',
-  receiveTransactionsForAddress = 'RECEIVE_TRANSACTIONS_FOR_ADDRESS',
-  sendCoins = 'SEND_COINS',
-  receiveError = 'RECEIVE_ERROR',
-  logout = 'LOGOUT',
+  updateTheme = "UPDATE_THEME",
+  updateLedger = "UPDATE_LEDGER",
+  getTransactionsForAddress = "TRANSACTIONS_FOR_ADDRESS",
+  receiveTransactionsForAddress = "RECEIVE_TRANSACTIONS_FOR_ADDRESS",
+  sendCoins = "SEND_COINS",
+  receiveError = "RECEIVE_ERROR",
+  logout = "LOGOUT",
 }
 
 export interface ActionIdentity {
@@ -68,18 +68,18 @@ export interface ActionIdentity {
 }
 
 export type Action =
-  | { type: ActionTypes.updateLedger; payload: State['ledger'] }
+  | { type: ActionTypes.updateLedger; payload: State["ledger"] }
   | {
       type: ActionTypes.getTransactionsForAddress;
-      payload: State['ledger'];
+      payload: State["ledger"];
     }
   | {
       type: ActionTypes.receiveTransactionsForAddress;
-      payload: State['ledger'];
+      payload: State["ledger"];
     }
   | { type: ActionTypes.sendCoins; payload: SendKoicoinFields }
-  | { type: ActionTypes.receiveError; payload: State['ledger'] }
-  | { type: ActionTypes.updateTheme; payload: State['theme'] }
+  | { type: ActionTypes.receiveError; payload: State["ledger"] }
+  | { type: ActionTypes.updateTheme; payload: State["theme"] }
   | { type: ActionTypes.logout };
 
 export interface Actions {

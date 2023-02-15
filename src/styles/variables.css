@@ -1,0 +1,16 @@
+:root {
+  --primary-color: #db6a30;
+  --secondary-color: #ff5722;
+  --neutral-color: #d1d1d1;
+  --neutral2-color: #fff;
+  --neutral3-color: rgb(135, 135, 135);
+  --linebreak-color: #4d4d4d;
+  --primary-background: #444444;
+  --secondary-background: #565656;
+  --tertiary-background: #5f5c5c;
+  --quaternary-background: #3d3b3b;
+  --header-height: 56px;
+  --spacing-lg: 3rem;
+  --spacing-md: 2rem;
+  --spacing-sm: 1rem;
+}
