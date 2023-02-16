@@ -2,10 +2,20 @@ import { Button, Form, Input } from 'antd';
 import { HomeOutlined } from '@ant-design/icons';
 import React, { useCallback, useContext } from 'react';
 import { StoreContext } from '../store/store';
-import { LoginFields, Pages } from '../store/types';
-import styles from '@/styles/login.module.scss';
+import { LoginFields } from '../store/types';
 import Image from 'next/image';
 import { useRouter } from 'next/router';
+import styled from 'styled-components';
+
+const StyledContainer = styled.div`
+  display: grid;
+  grid-template-columns: max-content;
+  grid-template-rows: 1fr;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background: var(--primary-background);
+`;
 
 const Login: React.FC = () => {
   const { actions } = useContext(StoreContext);
@@ -19,7 +29,7 @@ const Login: React.FC = () => {
   );
 
   return (
-    <div className={styles.login}>
+    <StyledContainer>
       <div className="form">
         <Image
           src="/assets/images/logo.png"
@@ -59,7 +69,7 @@ const Login: React.FC = () => {
           </Button>
         </Form>
       </div>
-    </div>
+    </StyledContainer>
   );
 };
 

@@ -1,8 +1,8 @@
 import type { AppProps } from 'next/app';
 import { Open_Sans } from '@next/font/google';
 import { StoreProvider } from '@/ui/store/store';
+import GlobalStyle from '@/styles/global';
 import 'antd/dist/antd.css';
-import '@/styles/main.scss';
 
 const opensans = Open_Sans({
   weight: '400',
@@ -12,6 +12,7 @@ const opensans = Open_Sans({
 export default function App({ Component, pageProps }: AppProps) {
   return (
     <main className={opensans.className}>
+      <GlobalStyle />
       <StoreProvider>
         <Component {...pageProps} />
       </StoreProvider>

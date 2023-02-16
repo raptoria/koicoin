@@ -1,13 +1,21 @@
-import { Alert, Card, Spin, Empty, PageHeader } from "antd";
-import React, { useCallback, useContext, useEffect, useMemo } from "react";
-import { StoreContext } from "@/ui/store/store";
-import styles from "@/styles/dashboard.module.scss";
-import Avatar from "antd/lib/avatar/avatar";
-import { UserOutlined, ArrowRightOutlined } from "@ant-design/icons";
-import { SankeyGraph } from "@/ui/graph/Sankey";
-import { getSankeyData } from "@/ui/graph/helpers";
-import SendCoinForm from "@/ui/form/Sendcoin";
-import Link from "next/link";
+import { Alert, Card, Spin, Empty, PageHeader } from 'antd';
+import React, { useCallback, useContext, useEffect, useMemo } from 'react';
+import { StoreContext } from '@/ui/store/store';
+import Avatar from 'antd/lib/avatar/avatar';
+import { UserOutlined, ArrowRightOutlined } from '@ant-design/icons';
+import { SankeyGraph } from '@/ui/graph/Sankey';
+import { getSankeyData } from '@/ui/graph/helpers';
+import SendCoinForm from '@/ui/form/Sendcoin';
+import Link from 'next/link';
+import styled from 'styled-components';
+
+const StyledContainer = styled.div`
+  display: grid;
+  grid-template-rows: max-content 40rem;
+  grid-template-columns: 20rem 1fr;
+  background: var(--quaternary-background);
+  height: 100vh;
+`;
 
 const Dashboard: React.FC = () => {
   const {
@@ -36,12 +44,12 @@ const Dashboard: React.FC = () => {
   }, [transactions]);
 
   return (
-    <div className={styles.dashboard}>
+    <StyledContainer>
       <header>
         <PageHeader
           title=""
           subTitle="Koicoin sender"
-          avatar={{ src: "/assets/images/logo.png" }}
+          avatar={{ src: '/assets/images/logo.png' }}
           extra={[
             <div key="userActions">
               <Avatar
@@ -90,7 +98,7 @@ const Dashboard: React.FC = () => {
           )}
         </Card>
       </div>
-    </div>
+    </StyledContainer>
   );
 };
 

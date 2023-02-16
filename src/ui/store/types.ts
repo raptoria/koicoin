@@ -51,11 +51,6 @@ export interface State {
   [index: string]: Ledger | Theme;
 }
 
-export const enum Pages {
-  login = '/login',
-  dashboard = '/dashboard',
-}
-
 export const enum ActionTypes {
   updateTheme = 'UPDATE_THEME',
   updateLedger = 'UPDATE_LEDGER',
