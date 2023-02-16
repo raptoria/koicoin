@@ -31,7 +31,7 @@ jobs:
         uses: Burnett01/rsync-deployments@4.1
         with:
           switches: -avH --delete --exclude .well-known
-          path: .next/
+          path: out/
           remote_path: koicoin.guigurl.com/
           remote_host: amherst.dreamhost.com
           remote_user: kessieduck

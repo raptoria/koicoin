@@ -33,7 +33,7 @@ const Login: React.FC = () => {
       <div className="form">
         <Image
           src="/assets/images/logo.png"
-          unoptimized
+          unoptimized={true}
           alt="Koincoin"
           width="100"
           height="100"
