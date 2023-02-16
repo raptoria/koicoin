@@ -27,8 +27,6 @@ export const SankeyGraph: React.FC<any> = ({ data }) => {
       labelPadding={16}
       labelTextColor={{ from: 'color', modifiers: [['darker', 1]] }}
       animate={true}
-      motionStiffness={140}
-      motionDamping={13}
       legends={[
         {
           anchor: 'bottom-right',
