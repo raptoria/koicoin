@@ -2,7 +2,7 @@ This is a [Next.js](https://nextjs.org/) project bootstrapped with [`npx create-
 
 ## Getting Started
 
-install deps::
+install deps:
 
 ```bash
 npm install

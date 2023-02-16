@@ -3,8 +3,8 @@ import {
   ActionIdentity,
   ActionTypes,
   ApiResponse,
+  Error,
 } from '../store/types';
-import fetchJsonp, { Response as JsonpResponse } from 'fetch-jsonp';
 import { takeEvery } from './middleware';
 
 export async function getTransactionForAddress<T extends ActionIdentity>(
@@ -13,8 +13,8 @@ export async function getTransactionForAddress<T extends ActionIdentity>(
   const address = action.payload!.address;
 
   try {
-    const response: JsonpResponse = await fetchJsonp(
-      `https://jobcoin.gemini.com/germinate-deepness/api/addresses/${address}`
+    const response: Response = await fetch(
+      `${process.env.NEXT_PUBLIC_COIN_API}/addresses/${address}`
     );
     const result: ApiResponse = await response.json();
 
@@ -26,7 +26,8 @@ export async function getTransactionForAddress<T extends ActionIdentity>(
       type: ActionTypes.receiveTransactionsForAddress,
       payload: result,
     };
-  } catch (error) {
+  } catch (err: unknown) {
+    const error = err as Error;
     return {
       type: ActionTypes.receiveError,
       payload: { error: error.message },
@@ -37,11 +38,9 @@ export async function getTransactionForAddress<T extends ActionIdentity>(
 export async function sendCoins<T extends ActionIdentity>(
   action: T
 ): Promise<Action> {
-  const proxy = 'https://cors-anywhere.herokuapp.com/';
-
   try {
     const response: Response = await fetch(
-      proxy + 'http://jobcoin.gemini.com/germinate-deepness/api/transactions',
+      `${process.env.NEXT_PUBLIC_COIN_API}/transactions`,
       {
         method: 'POST',
         body: JSON.stringify(action.payload),
@@ -60,7 +59,8 @@ export async function sendCoins<T extends ActionIdentity>(
       type: ActionTypes.getTransactionsForAddress,
       payload: { address: action.payload!.fromAddress },
     };
-  } catch (error) {
+  } catch (err: unknown) {
+    const error = err as Error;
     return {
       type: ActionTypes.receiveError,
       payload: { error: error.message },
