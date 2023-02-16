@@ -1,8 +1,8 @@
 import React, { useCallback, useContext } from 'react';
 import { Button, Input, Form } from 'antd';
-import { SendKoicoinFields } from '../store/types';
+import { SendKoicoinFields } from '@/ui/store/types';
 import { BankOutlined, SendOutlined } from '@ant-design/icons';
-import { StoreContext } from '../store/store';
+import { StoreContext } from '@/ui/store/store';
 
 const SendCoinForm: React.FC = () => {
   const {

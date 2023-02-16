@@ -1,4 +1,4 @@
-import { Transaction } from '../../store/types';
+import { Transaction } from '@/ui/store/types';
 import { getSankeyData, balancesOverTime } from '../helpers';
 
 describe('sankey helpers', () => {

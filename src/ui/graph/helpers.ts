@@ -1,5 +1,4 @@
-import { SankeyDataLink, SankeyDataNode } from '@nivo/sankey';
-import { Transaction } from '../store/types';
+import { Transaction } from '@/ui/store/types';
 
 interface AddressNetAmounts {
   [key: string]: number;
@@ -41,7 +40,7 @@ export const balancesOverTime: (
 const nettedTransactions: (
   transactions: Transaction[],
   currentAddress: string
-) => SankeyDataLink[] = (transactions, currentAddress) => {
+) => any[] = (transactions, currentAddress) => {
   let fromCurrentAddress: AddressNetAmounts = {};
   let toCurrentAddress: AddressNetAmounts = {};
   let nettedTransactions = [];
@@ -105,7 +104,7 @@ export const getSankeyData: (
   address: string | null | undefined
 ) => any | null = (transactions, address) => {
   let uniqueAddresses = new Set();
-  let nodes: SankeyDataNode[] = [];
+  let nodes: any[] = [];
 
   const nettedData = nettedTransactions(transactions!, address!);
 

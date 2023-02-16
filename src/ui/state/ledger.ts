@@ -1,4 +1,4 @@
-import { Ledger } from '../store/types';
+import { Ledger } from '@/ui/store/types';
 
 export const emptyState = {
   address: undefined,

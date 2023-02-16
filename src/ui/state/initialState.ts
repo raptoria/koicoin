@@ -1,5 +1,5 @@
-import { State } from '../store/types';
-import { ledger } from '../state/ledger';
+import { State } from '@/ui/store/types';
+import { ledger } from '@/ui/state/ledger';
 
 export const initialState: State = {
   ledger,

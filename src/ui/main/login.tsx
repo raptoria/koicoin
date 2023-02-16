@@ -1,8 +1,8 @@
 import { Button, Form, Input } from 'antd';
 import { HomeOutlined } from '@ant-design/icons';
 import React, { useCallback, useContext } from 'react';
-import { StoreContext } from '../store/store';
-import { LoginFields } from '../store/types';
+import { StoreContext } from '@/ui/store/store';
+import { LoginFields } from '@/ui/store/types';
 import Image from 'next/image';
 import { useRouter } from 'next/router';
 import styled from 'styled-components';

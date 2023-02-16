@@ -48,7 +48,7 @@ const Dashboard: React.FC = () => {
       <header>
         <PageHeader
           title=""
-          subTitle="Koicoin sender"
+          subTitle="Koicoin Dashboard"
           avatar={{ src: '/assets/images/logo.png' }}
           extra={[
             <div key="userActions">

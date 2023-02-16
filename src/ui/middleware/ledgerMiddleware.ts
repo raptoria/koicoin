@@ -3,8 +3,8 @@ import {
   ActionIdentity,
   ActionTypes,
   ApiResponse,
-  Error,
-} from '../store/types';
+  ApiError,
+} from '@/ui/store/types';
 import { takeEvery } from './middleware';
 
 export async function getTransactionForAddress<T extends ActionIdentity>(
@@ -27,7 +27,7 @@ export async function getTransactionForAddress<T extends ActionIdentity>(
       payload: result,
     };
   } catch (err: unknown) {
-    const error = err as Error;
+    const error = err as ApiError;
     return {
       type: ActionTypes.receiveError,
       payload: { error: error.message },
@@ -60,7 +60,7 @@ export async function sendCoins<T extends ActionIdentity>(
       payload: { address: action.payload!.fromAddress },
     };
   } catch (err: unknown) {
-    const error = err as Error;
+    const error = err as ApiError;
     return {
       type: ActionTypes.receiveError,
       payload: { error: error.message },

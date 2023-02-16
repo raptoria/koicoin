@@ -8,7 +8,7 @@ import {
   updateTheme,
 } from '@/ui/actions/actions';
 
-export interface Error {
+export interface ApiError {
   message: string;
 }
 

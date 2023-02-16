@@ -1,9 +1,9 @@
 import React, { useReducer, createContext } from 'react';
 import { StoreContextType, State, Action } from './types';
-import { ledger } from '../reducers/ledger';
-import { useActions } from '../actions/actions';
-import { initialState } from '../state/initialState';
-import { applyMiddleware } from '../middleware/middleware';
+import { ledger } from '@/ui/reducers/ledger';
+import { useActions } from '@/ui/actions/actions';
+import { initialState } from '@/ui/state/initialState';
+import { applyMiddleware } from '@/ui/middleware/middleware';
 
 const combineReducers = (slices: any) => (state: State, action: Action) =>
   Object.keys(slices).reduce(

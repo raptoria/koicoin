@@ -1,4 +1,9 @@
-import { ActionTypes, Action, State, SendKoicoinFields } from '../store/types';
+import {
+  ActionTypes,
+  Action,
+  State,
+  SendKoicoinFields,
+} from '@/ui/store/types';
 import { Dispatch } from 'react';
 
 export const updateLedger = (payload: State['ledger']): Action => {

@@ -1,6 +1,6 @@
 import { Reducer } from 'react';
-import { emptyState } from '../state/ledger';
-import { State, Action, ActionTypes } from '../store/types';
+import { emptyState } from '@/ui/state/ledger';
+import { State, Action, ActionTypes } from '@/ui/store/types';
 
 export const ledger: Reducer<State['ledger'], Action> = (state, action) => {
   switch (action.type) {
