@@ -1,11 +1,11 @@
-import { Button, Form, Input } from "antd";
-import { HomeOutlined } from "@ant-design/icons";
-import React, { useCallback, useContext } from "react";
-import { StoreContext } from "../store/store";
-import { LoginFields, Pages } from "../store/types";
-import styles from "@/styles/login.module.scss";
-import Image from "next/image";
-import { useRouter } from "next/router";
+import { Button, Form, Input } from 'antd';
+import { HomeOutlined } from '@ant-design/icons';
+import React, { useCallback, useContext } from 'react';
+import { StoreContext } from '../store/store';
+import { LoginFields, Pages } from '../store/types';
+import styles from '@/styles/login.module.scss';
+import Image from 'next/image';
+import { useRouter } from 'next/router';
 
 const Login: React.FC = () => {
   const { actions } = useContext(StoreContext);
@@ -13,7 +13,7 @@ const Login: React.FC = () => {
   const onFinish = useCallback(
     (fields: LoginFields) => {
       actions.updateLedger({ address: fields.address });
-      router.push("/dashboard");
+      router.push('/dashboard');
     },
     [actions, router]
   );
@@ -39,7 +39,7 @@ const Login: React.FC = () => {
           <Form.Item
             name="address"
             rules={[
-              { required: true, message: "Please input a valid address" },
+              { required: true, message: 'Please input a valid address' },
             ]}
           >
             <Input
@@ -53,7 +53,7 @@ const Login: React.FC = () => {
             size="large"
             type="primary"
             htmlType="submit"
-            data-testid="signinButton"
+            data-testid="signin"
           >
             Sign in
           </Button>
