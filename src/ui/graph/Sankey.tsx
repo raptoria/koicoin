@@ -1,12 +1,12 @@
-import React, { useCallback, useContext } from 'react';
-import { Data, ResponsiveSankey } from '@nivo/sankey';
+import React from 'react';
+import { ResponsiveSankey } from '@nivo/sankey';
 // make sure parent container have a defined height when using
 // responsive component, otherwise height will be 0 and
 // no chart will be rendered.
 // website examples showcase many properties,
 // you'll often use just a few of them.
 
-export const SankeyGraph: React.FC<Data> = ({ data }) => {
+export const SankeyGraph: React.FC<any> = ({ data }) => {
   return (
     <ResponsiveSankey
       data={data}

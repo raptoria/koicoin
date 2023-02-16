@@ -40,6 +40,7 @@ describe('Login', () => {
   it('the login form has validation', () => {
     act(async () => {
       const signinButton = screen.getByTestId('signin');
+
       await waitFor(() => {
         expect(signinButton.toBeVisible());
       });

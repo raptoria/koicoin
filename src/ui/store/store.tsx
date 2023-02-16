@@ -23,7 +23,7 @@ export const StoreContext = createContext<StoreContextType>(
   {} as StoreContextType
 );
 
-export const StoreProvider: React.FC = ({ children }) => {
+export const StoreProvider: React.FC<any> = ({ children }) => {
   const [state, dispatch] = useReducer(rootReducer, initialState);
 
   const enhancedDispatch = applyMiddleware(dispatch);
