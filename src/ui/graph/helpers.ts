@@ -1,4 +1,4 @@
-import { Data, SankeyDataLink, SankeyDataNode } from '@nivo/sankey';
+import { SankeyDataLink, SankeyDataNode } from '@nivo/sankey';
 import { Transaction } from '../store/types';
 
 interface AddressNetAmounts {
@@ -103,7 +103,7 @@ const nettedTransactions: (
 export const getSankeyData: (
   t: Transaction[] | null | undefined,
   address: string | null | undefined
-) => Data['data'] | null = (transactions, address) => {
+) => any | null = (transactions, address) => {
   let uniqueAddresses = new Set();
   let nodes: SankeyDataNode[] = [];
 
