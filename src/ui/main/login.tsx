@@ -15,6 +15,11 @@ const StyledContainer = styled.div`
   align-items: center;
   height: 100vh;
   background: var(--primary-background);
+
+  @media all and (max-width: 768px) {
+    padding-top: var(--spacing-md);
+    align-items: start;
+  }
 `;
 
 const Login: React.FC = () => {

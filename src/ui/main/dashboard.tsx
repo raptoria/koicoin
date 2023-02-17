@@ -14,7 +14,19 @@ const StyledContainer = styled.div`
   grid-template-rows: max-content 40rem;
   grid-template-columns: 20rem 1fr;
   background: var(--quaternary-background);
-  height: 100vh;
+
+  @media all and (max-width: 768px) {
+    grid-template-rows: min-content min-content 500px;
+    grid-template-columns: 100%;
+
+    .secondColumn {
+      margin-right: 0;
+    }
+
+    header {
+      grid-column: span 1;
+    }
+  }
 `;
 
 const Dashboard: React.FC = () => {

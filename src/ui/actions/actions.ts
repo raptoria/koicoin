@@ -7,6 +7,12 @@ import {
 import { Dispatch } from 'react';
 
 export const updateLedger = (payload: State['ledger']): Action => {
+  try {
+    localStorage.setItem('address', payload.address || 'undefined');
+  } catch (error) {
+    console.log('error accessing localStorage');
+  }
+
   return {
     type: ActionTypes.updateLedger,
     payload,
@@ -14,9 +20,19 @@ export const updateLedger = (payload: State['ledger']): Action => {
 };
 
 export const getTransactionsForAddress = (payload: State['ledger']): Action => {
+  let coinAddress = payload.address;
+
+  try {
+    if (!coinAddress) {
+      coinAddress = localStorage.getItem('address') || 'undefined';
+    }
+  } catch (error) {
+    console.log('error accessing localStorage');
+  }
+
   return {
     type: ActionTypes.getTransactionsForAddress,
-    payload,
+    payload: { ...payload, address: coinAddress },
   };
 };
 

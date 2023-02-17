@@ -18,6 +18,10 @@ const GlobalStyle = createGlobalStyle`
     --spacing-sm: 1rem;
   }
 
+  body {
+    background: var(--quaternary-background);
+  }
+  
   .inputIcon {
     color: var(--neutral-color);
     margin-right: 0.1rem;
@@ -191,13 +195,6 @@ const GlobalStyle = createGlobalStyle`
     .ant-card {
       text-align: center;
       margin-bottom: var(--spacing-md);
-    }
-  }
-
-@media all and (max-width: 500px) {
-    .login {
-      padding-top: var(--spacing-sm);
-      align-items: start;
     }
   }
 `;
