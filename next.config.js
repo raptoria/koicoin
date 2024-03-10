@@ -2,8 +2,19 @@
 const nextConfig = {
   reactStrictMode: true,
   images: {
-    unoptimized: true
-  }
-}
+    unoptimized: true,
+  },
 
-module.exports = nextConfig
+  async rewrites() {
+    const host = process.env.NEXT_PUBLIC_COIN_API || 'http://localhost:6969';
+
+    return [
+      {
+        source: '/api/:path*',
+        destination: `${host}/api/:path*`,
+      },
+    ];
+  },
+};
+
+module.exports = nextConfig;

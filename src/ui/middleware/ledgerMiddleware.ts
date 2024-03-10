@@ -8,14 +8,12 @@ import {
 import { takeEvery } from './middleware';
 
 export async function getTransactionForAddress<T extends ActionIdentity>(
-  action: T
+  action: T,
 ): Promise<Action> {
   const address = action.payload!.address;
 
   try {
-    const response: Response = await fetch(
-      `${process.env.NEXT_PUBLIC_COIN_API}/addresses/${address}`
-    );
+    const response: Response = await fetch(`/api/addresses/${address}`);
     const result: ApiResponse = await response.json();
 
     if (!response.ok) {
@@ -36,19 +34,16 @@ export async function getTransactionForAddress<T extends ActionIdentity>(
 }
 
 export async function sendCoins<T extends ActionIdentity>(
-  action: T
+  action: T,
 ): Promise<Action> {
   try {
-    const response: Response = await fetch(
-      `${process.env.NEXT_PUBLIC_COIN_API}/transactions`,
-      {
-        method: 'POST',
-        body: JSON.stringify(action.payload),
-        headers: {
-          'Content-Type': 'application/json',
-        },
-      }
-    );
+    const response: Response = await fetch(`/api/transactions`, {
+      method: 'POST',
+      body: JSON.stringify(action.payload),
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    });
     const result: ApiResponse = await response.json();
 
     if (!response.ok) {
@@ -71,7 +66,7 @@ export async function sendCoins<T extends ActionIdentity>(
 export function* ledgerMiddleware() {
   yield takeEvery(
     ActionTypes.getTransactionsForAddress,
-    getTransactionForAddress
+    getTransactionForAddress,
   );
   yield takeEvery(ActionTypes.sendCoins, sendCoins);
 }
